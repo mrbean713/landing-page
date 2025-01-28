@@ -4,7 +4,6 @@ import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { cn } from "@/lib/utils";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
-import Image from "next/image";
 
 
 import { useState } from "react";
