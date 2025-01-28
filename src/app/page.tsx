@@ -33,7 +33,7 @@ export default function Home() {
       <header className="sticky top-0 z-20 flex items-center justify-center p-4 backdrop-blur-[2px] border-b border-gray-800">
         <img src="/temp_logo.png" alt="Fanfantasy.ai Logo" className="h-8" />
       </header>
-      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-4 md:p-8 pb-20 gap-16 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-8 row-start-2 items-center text-center z-10">
           <AnimatedGradientText>
             🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-transparent" />{" "}
@@ -53,16 +53,16 @@ export default function Home() {
             {success ? (
               <p className="text-white">Thank you for signing up!</p>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-transparent border border-gray-400 py-2 pl-4 pr-2 rounded-2xl">
+              <form onSubmit={handleSubmit} className="bg-transparent border border-gray-400 py-4 md:py-2 pl-3 md:pl-4 pr-3 md:pr-2 rounded-3xl flex flex-col sm:flex-row sm:items-center gap-4 w-[500px] max-w-md">
                 <input
                   type="email"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="bg-transparent outline-none text-white w-[250px]"
+                  className="bg-transparent outline-none text-white w-full"
                 />
-                <RainbowButton>Join waitlist</RainbowButton>
+                <RainbowButton className="w-full md:w-[60%]">Join waitlist</RainbowButton>
               </form>
             )}
           </div>
