@@ -14,26 +14,19 @@ export async function POST(request: Request) {
     // Insert email into the 'waitlist' table in Supabase
     const { data, error } = await supabase
       .from('waitlist')
-      .insert([{ email }]);
+      .insert([{ email }])
+      .select(); // Ensures data is returned in the correct format
 
     if (error) {
-      // Handle unique constraint violation (email already exists)
-      if (error.code === '23505') {
-        return NextResponse.json(
-          { error: "This email is already on the waitlist." },
-          { status: 400 }
-        );
-      }
-      // Log and return other database errors
       console.error("Supabase error:", error);
       return NextResponse.json(
-        { error: "Database error occurred." },
+        { error: error.message || "Database error occurred." },
         { status: 500 }
       );
     }
 
     // Ensure `data` is valid before returning
-    if (!data || data.length === 0) {
+    if (!data || (data as any[]).length === 0) {
       return NextResponse.json(
         { error: "Failed to insert email into the database." },
         { status: 500 }
@@ -45,7 +38,6 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    // Catch and handle unexpected errors
     console.error("Unexpected error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
