@@ -8,6 +8,9 @@ const supabase = createClient(
 );
 
 export async function POST(request: Request) {
+  console.log("SUPABASE_URL:", process.env.SUPABASE_URL);
+  console.log("SUPABASE_ANON_KEY:", process.env.SUPABASE_ANON_KEY);
+
   try {
     const { email } = await request.json();
 
@@ -18,17 +21,16 @@ export async function POST(request: Request) {
       .select(); // Ensures `data` is returned
 
     if (error) {
+      // Handle unique constraint violation (email already exists)
+      if (error.code === '23505') {
+        return NextResponse.json(
+          { message: "This email is already on the waitlist." }, // Now returns 200 instead of 500
+          { status: 200 }
+        );
+      }
       console.error("Supabase error:", error);
       return NextResponse.json(
         { error: error.message || "Database error occurred." },
-        { status: 500 }
-      );
-    }
-
-    // Ensure `data` is valid before returning
-    if (!data || data.length === 0) {
-      return NextResponse.json(
-        { error: "Failed to insert email into the database." },
         { status: 500 }
       );
     }
