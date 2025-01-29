@@ -32,6 +32,14 @@ export async function POST(request: Request) {
       );
     }
 
+    // Ensure `data` is valid before returning
+    if (!data || data.length === 0) {
+      return NextResponse.json(
+        { error: "Failed to insert email into the database." },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
       { message: "Thank you for signing up!", user: data[0] },
       { status: 200 }
