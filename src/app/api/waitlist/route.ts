@@ -1,21 +1,28 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
+// Define the expected structure of the database entry
+interface WaitlistEntry {
+  id?: number; // Optional if auto-incremented
+  email: string;
+  created_at?: string;
+}
+
 // Initialize Supabase client
 const supabase = createClient(
-  process.env.SUPABASE_URL || '', // Your Supabase project URL
-  process.env.SUPABASE_ANON_KEY || '' // Your Supabase anon/public API key
+  process.env.SUPABASE_URL || '',
+  process.env.SUPABASE_ANON_KEY || ''
 );
 
 export async function POST(request: Request) {
   try {
     const { email } = await request.json();
 
-    // Insert email into the 'waitlist' table in Supabase
+    // Insert email into the 'waitlist' table and return the inserted record
     const { data, error } = await supabase
       .from('waitlist')
       .insert([{ email }])
-      .select(); // Ensures data is returned in the correct format
+      .select(); // Ensures `data` is returned
 
     if (error) {
       console.error("Supabase error:", error);
@@ -26,7 +33,7 @@ export async function POST(request: Request) {
     }
 
     // Ensure `data` is valid before returning
-    if (!data || (data as any[]).length === 0) {
+    if (!data || data.length === 0) {
       return NextResponse.json(
         { error: "Failed to insert email into the database." },
         { status: 500 }
