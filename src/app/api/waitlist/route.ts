@@ -1,13 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-// Define the expected structure of the database entry
-interface WaitlistEntry {
-  id?: number; // Optional if auto-incremented
-  email: string;
-  created_at?: string;
-}
-
 // Initialize Supabase client
 const supabase = createClient(
   process.env.SUPABASE_URL || '',
@@ -18,7 +11,7 @@ export async function POST(request: Request) {
   try {
     const { email } = await request.json();
 
-    // Insert email into the 'waitlist' table and return the inserted record
+    // Insert email into the 'waitlist' table in Supabase and return the inserted record
     const { data, error } = await supabase
       .from('waitlist')
       .insert([{ email }])
