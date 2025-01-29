@@ -1,28 +1,44 @@
 import { NextResponse } from 'next/server';
-import pool from '@/lib/db';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.SUPABASE_URL || '', // Your Supabase project URL
+  process.env.SUPABASE_ANON_KEY || '' // Your Supabase anon/public API key
+);
 
 export async function POST(request: Request) {
   try {
     const { email } = await request.json();
-    
-    const result = await pool.query(
-      "INSERT INTO users (email) VALUES ($1) RETURNING *",
-      [email]
-    );
 
-    return NextResponse.json(
-      { message: "Thank you for signing up!", user: result.rows[0] },
-      { status: 200 }
-    );
-  } catch (error: unknown) {
-    if (error && typeof error === 'object' && 'code' in error && error.code === "23505") {
+    // Insert email into the 'waitlist' table in Supabase
+    const { data, error } = await supabase
+      .from('waitlist')
+      .insert([{ email }]);
+
+    if (error) {
+      // Handle unique constraint violation (email already exists)
+      if (error.code === '23505') {
+        return NextResponse.json(
+          { error: "This email is already on the waitlist." },
+          { status: 400 }
+        );
+      }
+      // Log and return other database errors
+      console.error("Supabase error:", error);
       return NextResponse.json(
-        { error: "This email is already on the waitlist." },
-        { status: 400 }
+        { error: "Database error occurred." },
+        { status: 500 }
       );
     }
-    
-    console.error("Database error:", error);
+
+    return NextResponse.json(
+      { message: "Thank you for signing up!", user: data[0] },
+      { status: 200 }
+    );
+  } catch (error) {
+    // Catch and handle unexpected errors
+    console.error("Unexpected error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
