@@ -1,21 +1,23 @@
 "use client";
 import React, {
   useEffect,
-  useRef,
+//   useRef,
   useState,
   createContext,
-  useContext,
-  useCallback,
+//   useContext,
+//   useCallback,
 } from "react";
 import {
   IconArrowNarrowLeft,
   IconArrowNarrowRight,
-  IconX,
+//   IconX,
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+// import { AnimatePresence, motion } from "framer-motion";
+
 import Image, { ImageProps } from "next/image";
-import { useOutsideClick } from "@/hooks/use-outside-click";
+// import { useOutsideClick } from "@/hooks/use-outside-click";
 
 interface CarouselProps {
   items: React.ReactElement[];
@@ -156,17 +158,17 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 
 export const Card = ({
   card,
-  index,
+//   index,
   layout = false,
 }: {
   card: Card;
-  index: number;
+  index?: number;
   layout?: boolean;
 }) => {
   // Commenting out state and refs since we don't need them for now
   // const [open, setOpen] = useState(false);
   // const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose } = useContext(CarouselContext);
+//   const { onCardClose } = useContext(CarouselContext);
 
   // Commenting out all modal-related handlers and effects
   // const handleClose = useCallback(() => {
