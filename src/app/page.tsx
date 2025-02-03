@@ -3,8 +3,9 @@
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { cn } from "@/lib/utils";
 import { RainbowButton } from "@/components/ui/rainbow-button";
-import { FlickeringGrid } from "@/components/ui/flickering-grid";
-
+import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
+import Image from 'next/image';
+import { BackgroundLines } from "@/components/ui/background-lines";
 
 import { useState } from "react";
 export default function Home() {
@@ -27,14 +28,38 @@ export default function Home() {
     }
   };
 
+  const cards = data.map((card, index) => (
+    <Card key={card.src} card={card} index={index} />
+  ));
 
   return (
     <div className="min-h-screen bg-[#310D4D]">
-      <header className="sticky top-0 z-20 flex items-center justify-center p-4 backdrop-blur-[2px] border-b border-gray-800">
+      <header className="absolute top-0 w-full z-20 flex items-center justify-center p-4 backdrop-blur-[2px] bg-gradient-to-b from-[#310D4D] to-transparent">
         <img src="/temp_logo.png" alt="Fanfantasy.ai Logo" className="h-8" />
       </header>
-      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-4 md:p-8 pb-20 gap-16 font-[family-name:var(--font-geist-sans)]">
-        <main className="flex flex-col gap-8 row-start-2 items-center text-center z-10">
+      
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center">
+        {/* Background Lines */}
+        <BackgroundLines className="absolute inset-0 bg-[#6B7280]">
+          {/* Empty div to allow BackgroundLines to render its SVG */}
+          <div />
+        </BackgroundLines>
+
+        {/* <div className="absolute inset-0">
+          <FlickeringGrid
+            className="h-full w-full"
+            squareSize={1}
+            gridGap={6}
+            color="#6B7280"
+            maxOpacity={0.8}
+            flickerChance={0.1}
+          />
+        </div> */}
+       
+
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <AnimatedGradientText>
             🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-transparent" />{" "}
             <span
@@ -45,15 +70,18 @@ export default function Home() {
               Introducing fanfantasy.ai
             </span>
           </AnimatedGradientText>
-          <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl text-white">
-            your fantasy, realized.
+          <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl text-white mt-6">
+            Your superfans' fantasies, realized.
           </h1>
+          <p className="text-white mt-6 text-lg max-w-2xl mx-auto">
+            Fan Fantasy helps creators monetize their brand and scale their businesses. Empower your creators to 10x their earnings through AI chat and video.
+          </p>
 
-          <div className="flex gap-4 items-center flex-col">
+          <div className="mt-10">
             {success ? (
               <p className="text-white">Thank you for signing up!</p>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-transparent border border-gray-400 py-4 md:py-2 pl-3 md:pl-4 pr-3 md:pr-2 rounded-3xl flex flex-col sm:flex-row sm:items-center gap-4 w-[500px] max-w-md">
+              <form onSubmit={handleSubmit} className="bg-transparent border border-gray-400 py-4 md:py-2 pl-3 md:pl-4 pr-3 md:pr-2 rounded-3xl flex flex-col sm:flex-row sm:items-center gap-4 w-[500px] max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -66,20 +94,96 @@ export default function Home() {
               </form>
             )}
           </div>
-        </main>
-        <div className="fixed inset-0">
-          <FlickeringGrid
-            className="absolute inset-0 z-0 size-full"
-            squareSize={1}
-            gridGap={6}
-            color="#6B7280"
-            maxOpacity={0.8}
-            flickerChance={0.1}
-            height={1200}
-            width={1920}
-          />
         </div>
-      </div>
+      </section>
+
+      {/* Carousel Section */}
+      <section className="py-20">
+        <Carousel items={cards} />
+      </section>
     </div>
   );
 }
+
+const DummyContent = () => {
+  return (
+    <>
+      {[...new Array(3).fill(1)].map((_, index) => {
+        return (
+          <div
+            key={"dummy-content" + index}
+            className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
+          >
+            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+              <span className="font-bold text-neutral-700 dark:text-neutral-200">
+                The first rule of Apple club is that you boast about Apple club.
+              </span>{" "}
+              Keep a journal, quickly jot down a grocery list, and take amazing
+              class notes. Want to convert those notes to text? No problem.
+              Langotiya jeetu ka mara hua yaar is ready to capture every
+              thought.
+            </p>
+            <Image
+              src="https://assets.aceternity.com/macbook.png"
+              alt="Macbook mockup from Aceternity UI"
+              height="500"
+              width="500"
+              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+            />
+          </div>
+        );
+      })}
+    </>
+  );
+};
+ 
+const data = [
+  {
+    category: "age 25",
+    title: "Valentina",
+    src: "/baddieOne.jpg",
+    content: <DummyContent />,
+  },
+  {
+    category: "age 22",
+    title: "Hailey",
+    src: "/baddieTwo.jpg",
+    content: <DummyContent />,
+  },
+  {
+    category: "age 24",
+    title: "Aika",
+    src: "/baddieThree.jpg",
+    content: <DummyContent />,
+  },
+  {
+    category: "age 22",
+    title: "Gabriela",
+    src: "/baddieFour.jpg",
+    content: <DummyContent />,
+  },
+  {
+    category: "age 24",
+    title: "Imani",
+    src: "/baddieFive.jpg",
+    content: <DummyContent />,
+  },
+  {
+    category: "age 23",
+    title: "Isabella",
+    src: "/baddieSix.jpg",
+    content: <DummyContent />,
+  },
+  {
+    category: "age 20",
+    title: "Soo-min",
+    src: "/baddieSeven.jpg",
+    content: <DummyContent />,
+  },
+  {
+    category: "age 23",
+    title: "Annika",
+    src: "/baddieEight.jpg",
+    content: <DummyContent />,
+  },
+];
