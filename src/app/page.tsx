@@ -6,6 +6,8 @@ import { RainbowButton } from "@/components/ui/rainbow-button";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import Image from 'next/image';
 import { BackgroundLines } from "@/components/ui/background-lines";
+import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 
 import { useState } from "react";
 export default function Home() {
@@ -32,6 +34,24 @@ export default function Home() {
     <Card key={card.src} card={card} index={index} />
   ));
 
+  const testimonials = [
+    {
+      src:  "/baddieSeven.jpg",
+    },
+    {
+      src:  "/baddieSeven.jpg",
+    },
+    {
+      src:  "/baddieSeven.jpg",
+    },
+    {
+      src:  "/baddieSeven.jpg",
+    },
+    {
+      src:  "/baddieSeven.jpg",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#310D4D]">
       <header className="absolute top-0 w-full z-20 flex items-center justify-center py-6 backdrop-blur-[2px] bg-gradient-to-b from-[#310D4D] to-transparent">
@@ -40,6 +60,9 @@ export default function Home() {
       
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center">
+        {/* Add gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#310D4D] z-0" />
+        
         {/* Background Lines */}
         <BackgroundLines className="absolute inset-0 bg-[#6B7280]">
           {/* Empty div to allow BackgroundLines to render its SVG */}
@@ -104,65 +127,50 @@ export default function Home() {
 
       {/* add section*/}
       <section className="max-w-7xl mx-auto px-4 py-20">
-        <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Subscription Platform{" "}
-            <span className="block">
-              Built For{" "}
-              <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-transparent bg-clip-text">
-                Creators
+        <div className="flex flex-col md:flex-row gap-12 items-center">
+          {/* Left side - Text content */}
+          <div className="flex-1 max-w-xl tracking-tight">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+              Subscription Platform{" "}
+              <span className="block">
+                Built For{" "}
+                <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-transparent bg-clip-text">
+                  Creators
+                </span>
               </span>
-            </span>
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-            Build community or connect with fans individually with customizable memberships. 
-            Limit DMs, grant access to certain posts, offer live streams or calls and create 
-            exclusive memberships.
-          </p>
-          <div className="flex gap-4">
-            <button className="px-6 py-3 rounded-full border border-gray-300 hover:border-gray-400 transition-colors">
-              Learn More
-            </button>
-            <button className="px-6 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors">
-              Get Access
-            </button>
+            </h1>
+            <p className="text-xl text-gray-300 mb-8">
+              Build community or connect with fans individually with customizable memberships. 
+              Limit DMs, grant access to certain posts, offer live streams or calls and create 
+              exclusive memberships.
+            </p>
+            <div className="flex gap-4">
+              <button className="px-6 py-3 rounded-full border border-gray-300 text-white hover:border-gray-400 transition-colors">
+                Learn More
+              </button>
+              <button className="px-6 py-3 rounded-full bg-white text-[#310D4D] hover:bg-gray-100 transition-colors">
+                Get Access
+              </button>
+            </div>
+          </div>
+          <div className="flex-1">
+            <AnimatedTestimonials testimonials={testimonials} />
           </div>
         </div>
+      </section>
 
-        <Carousel
-          items={[
-            <Card
-              key="premium"
-              card={{
-                title: "Unlock Premium Content",
-                category: "Premium",
-                src: "/path-to-premium-image.jpg",
-                content: "Get ALL the exclusive content with this membership"
-              }}
-              index={0}
-            />,
-            <Card
-              key="dms"
-              card={{
-                title: "Unlimited DMs",
-                category: "Messaging",
-                src: "/path-to-dm-image.jpg",
-                content: "Stop paying per message! You can chat with me for FREE and send as many DMs as you want."
-              }}
-              index={1}
-            />,
-            <Card
-              key="top"
-              card={{
-                title: "Top Tier",
-                category: "Elite",
-                src: "/path-to-top-tier-image.jpg",
-                content: "Unlocks all wall posts, priority FREE chatting, stream access, exclusive content and just for you"
-              }}
-              index={2}
-            />
-          ]}
-        />
+      <section>
+        <div className="max-w-7xl mx-auto px-4 py-40">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center text-white leading-tight tracking-tighter">
+            We provide the tools for agencies & creatives to scale their business and{' '}
+            <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-transparent bg-clip-text">
+              make fan fantasies come true.
+            </span>
+          </h2>
+        </div>
+      </section>
+      <section>
+        <TextHoverEffect text="FANFANTASY" />
       </section>
     </div>
   );
