@@ -187,8 +187,12 @@ export default {
         third: "moveInCircle 40s linear infinite",
         fourth: "moveHorizontal 40s ease infinite",
         fifth: "moveInCircle 20s ease infinite",
-  		}
+  		},
+  		fontFamily: {
+  			sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+  			mono: ['var(--font-geist-mono)', 'monospace'],
+  		},
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [(await import("tailwindcss-animate")).default],
 } satisfies Config;

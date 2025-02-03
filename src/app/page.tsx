@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#310D4D]">
-      <header className="absolute top-0 w-full z-20 flex items-center justify-center p-4 backdrop-blur-[2px] bg-gradient-to-b from-[#310D4D] to-transparent">
+      <header className="absolute top-0 w-full z-20 flex items-center justify-center py-6 backdrop-blur-[2px] bg-gradient-to-b from-[#310D4D] to-transparent">
         <img src="/temp_logo.png" alt="Fanfantasy.ai Logo" className="h-8" />
       </header>
       
@@ -101,7 +101,69 @@ export default function Home() {
       <section className="py-20">
         <Carousel items={cards} />
       </section>
+
       {/* add section*/}
+      <section className="max-w-7xl mx-auto px-4 py-20">
+        <div className="max-w-4xl">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            Subscription Platform{" "}
+            <span className="block">
+              Built For{" "}
+              <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-transparent bg-clip-text">
+                Creators
+              </span>
+            </span>
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
+            Build community or connect with fans individually with customizable memberships. 
+            Limit DMs, grant access to certain posts, offer live streams or calls and create 
+            exclusive memberships.
+          </p>
+          <div className="flex gap-4">
+            <button className="px-6 py-3 rounded-full border border-gray-300 hover:border-gray-400 transition-colors">
+              Learn More
+            </button>
+            <button className="px-6 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors">
+              Get Access
+            </button>
+          </div>
+        </div>
+
+        <Carousel
+          items={[
+            <Card
+              key="premium"
+              card={{
+                title: "Unlock Premium Content",
+                category: "Premium",
+                src: "/path-to-premium-image.jpg",
+                content: "Get ALL the exclusive content with this membership"
+              }}
+              index={0}
+            />,
+            <Card
+              key="dms"
+              card={{
+                title: "Unlimited DMs",
+                category: "Messaging",
+                src: "/path-to-dm-image.jpg",
+                content: "Stop paying per message! You can chat with me for FREE and send as many DMs as you want."
+              }}
+              index={1}
+            />,
+            <Card
+              key="top"
+              card={{
+                title: "Top Tier",
+                category: "Elite",
+                src: "/path-to-top-tier-image.jpg",
+                content: "Unlocks all wall posts, priority FREE chatting, stream access, exclusive content and just for you"
+              }}
+              index={2}
+            />
+          ]}
+        />
+      </section>
     </div>
   );
 }
