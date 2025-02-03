@@ -101,6 +101,7 @@ export default function Home() {
       <section className="py-20">
         <Carousel items={cards} />
       </section>
+      {/* add section*/}
     </div>
   );
 }
