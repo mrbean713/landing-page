@@ -82,7 +82,7 @@ export default function Home() {
        
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-4 text-center">
           <AnimatedGradientText>
             🎉 <hr className="mx-2 h-4 w-px shrink-0 bg-transparent" />{" "}
             <span
@@ -96,15 +96,15 @@ export default function Home() {
           <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl text-white mt-6">
             Your superfans&apos; fantasies, realized.
           </h1>
-          <p className="text-white mt-6 text-lg max-w-2xl mx-auto">
+          <p className="text-white mt-6 text-lg max-w-2xl mx-auto px-4 sm:px-0">
             Fan Fantasy helps creators monetize their brand and scale their businesses. Empower your creators to 10x their earnings through AI chat and video.
           </p>
 
-          <div className="mt-10">
+          <div className="mt-10 px-4 sm:px-0">
             {success ? (
               <p className="text-white">Thank you for signing up!</p>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-transparent border border-gray-400 py-4 md:py-2 pl-3 md:pl-4 pr-3 md:pr-2 rounded-3xl flex flex-col sm:flex-row sm:items-center gap-4 w-[500px] max-w-md mx-auto">
+              <form onSubmit={handleSubmit} className="bg-transparent border border-gray-400 py-3 px-3 md:py-2 md:px-4 rounded-3xl flex flex-col sm:flex-row sm:items-center gap-4 w-full sm:w-[500px] max-w-md mx-auto">
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -121,16 +121,16 @@ export default function Home() {
       </section>
 
       {/* Carousel Section */}
-      <section className="py-20">
+      <section className="py-16 md:py-20">
         <Carousel items={cards} />
       </section>
 
       {/* add section*/}
-      <section className="max-w-7xl mx-auto px-4 py-20">
+      <section className="max-w-7xl mx-auto px-6 py-16 md:py-20">
         <div className="flex flex-col md:flex-row gap-12 items-center">
-          {/* Left side - Text content */}
-          <div className="flex-1 max-w-xl tracking-tight">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+          {/* Text content */}
+          <div className="flex-1 max-w-xl tracking-tight text-center md:text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white">
               Subscription Platform{" "}
               <span className="block">
                 Built For{" "}
@@ -139,21 +139,21 @@ export default function Home() {
                 </span>
               </span>
             </h1>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-lg mx-auto md:mx-0">
               Supercharge your fan interactions with AI-powered chat and image generation. 
               Create personalized experiences at scale, engage with fans 24/7, and unlock 
               new revenue streams through AI-enhanced content.
             </p>
-            <div className="flex gap-4">
-              <button className="px-6 py-3 rounded-full border border-gray-300 text-white hover:border-gray-400 transition-colors">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <button className="w-full sm:w-auto px-6 py-3 rounded-full border border-gray-300 text-white hover:border-gray-400 transition-colors">
                 Learn More
               </button>
-              <button className="px-6 py-3 rounded-full bg-white text-[#310D4D] hover:bg-gray-100 transition-colors">
+              <button className="w-full sm:w-auto px-6 py-3 rounded-full bg-white text-[#310D4D] hover:bg-gray-100 transition-colors">
                 Get Access
               </button>
             </div>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 w-full">
             <AnimatedTestimonials testimonials={testimonials} />
           </div>
         </div>
