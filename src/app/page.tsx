@@ -39,16 +39,16 @@ export default function Home() {
       src:  "/baddieSeven.jpg",
     },
     {
-      src:  "/baddieSeven.jpg",
+      src:  "/baddieEight.jpg",
     },
     {
-      src:  "/baddieSeven.jpg",
+      src:  "/baddieSix.jpg",
     },
     {
-      src:  "/baddieSeven.jpg",
+      src:  "/baddieFive.jpg",
     },
     {
-      src:  "/baddieSeven.jpg",
+      src:  "/baddieFour.jpg",
     },
   ];
 
