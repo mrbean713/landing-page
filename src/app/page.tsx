@@ -71,7 +71,7 @@ export default function Home() {
             </span>
           </AnimatedGradientText>
           <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl text-white mt-6">
-            Your superfans' fantasies, realized.
+            Your superfans&apos; fantasies, realized.
           </h1>
           <p className="text-white mt-6 text-lg max-w-2xl mx-auto">
             Fan Fantasy helps creators monetize their brand and scale their businesses. Empower your creators to 10x their earnings through AI chat and video.
