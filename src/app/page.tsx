@@ -140,9 +140,9 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-xl text-gray-300 mb-8">
-              Build community or connect with fans individually with customizable memberships. 
-              Limit DMs, grant access to certain posts, offer live streams or calls and create 
-              exclusive memberships.
+              Supercharge your fan interactions with AI-powered chat and image generation. 
+              Create personalized experiences at scale, engage with fans 24/7, and unlock 
+              new revenue streams through AI-enhanced content.
             </p>
             <div className="flex gap-4">
               <button className="px-6 py-3 rounded-full border border-gray-300 text-white hover:border-gray-400 transition-colors">
